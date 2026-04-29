@@ -4,6 +4,12 @@
 
 package com.mycompany.finalprojectparttwo;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Random;
+import java.io.PrintWriter;
+
 /**
 Group_3
 CMPR 112 - Spring 2026
@@ -16,8 +22,10 @@ Dobritsa Alexey, Ahmed Elnaggar, Jake Goldberg, Aaron Matalon
 public class FinalProjectPartTwo {
 
     final static double MAX_ALLOWED = 20;
+  
     
-   static void mainMenu(double balance,double amount,int correctGuesses,int missedGuesses,String playerName) { 
+   static void mainMenu(double balance,double amount,int correctGuesses,int missedGuesses,String playerName)
+   throws IOException{ 
       
        System.out.println("***" + " Group_3 " + "***");
         System.out.println();
@@ -44,7 +52,7 @@ public class FinalProjectPartTwo {
              correct = false;
          }    
          
-        do {
+     //   do {
         switch (menuInput){
         case 1:
             System.out.println("=> Your available balance is: $ " + balance);
@@ -75,15 +83,23 @@ public class FinalProjectPartTwo {
              
             break;
         case 5:
-             //System.out.println("Save statistics");
-             System.out.println("Data and Time");
-             System.out.println("Players Name");
-             System.out.println("Availible Credit: ");
-             System.out.println("Games Played: ");
-             System.out.println("Correct Guesses: ");
-             System.out.println("Missed Guesses: ");
-             System.out.println("Money you Won: ");
-             System.out.println("Money you Lost: ");
+             System.out.println("Saving statistics");
+             System.out.println(" ");
+           
+        File outFile = new File("statsFile.txt");
+        FileWriter output = new FileWriter(outFile, true);
+       PrintWriter out = new PrintWriter(output);
+             out.println("Data and Time");
+            // output.write("Players Name");
+            // output.write("Availible Credit: ");
+            // output.write("Games Played: ");
+            // output.write("Correct Guesses: ");
+            // output.write("Missed Guesses: ");
+            // output.write("Money you Won: ");
+            // output.write("Money you Lost: ");
+             System.out.println("is it writing");
+             
+             output.close();
             break;
         case 6:
             System.out.println("Thank you for using Group_3's software. Good Bye!");
@@ -93,7 +109,7 @@ public class FinalProjectPartTwo {
              System.out.println("Invalid input");
              
              break;
-     } } while(correct);
+     } // } while(correct);
         
    
    }
@@ -101,7 +117,7 @@ public class FinalProjectPartTwo {
    
     
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
    
    
     
@@ -110,7 +126,8 @@ public class FinalProjectPartTwo {
     int correctGuesses = 0;
     int missedGuesses = 0;
     String playerName = "";
-        
+    Random rand = new Random();
+    int randomInt = rand.nextInt(100);
 // Menu Statements
        
 
